@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aulas Musicais Samuel Rosa</title>
+
+<style>
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    scroll-behavior: smooth;
+
+}
+
+:root {
+
+    --verde: #006D77;
+
+    --azul: #83C5BE;
+
+    --creme: #EDF6F9;
+
+    --escuro: #123B40;
+
+    --branco: #ffffff;
+
+}
+
+body {
+
+    background: var(--creme);
+
+    color: var(--escuro);
+
+    line-height: 1.6;
+
+}
+
+header {
+
+    background: var(--verde);
+
+    color: white;
+
+    padding: 20px 7%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+}
+
+.logo {
+
+    font-size: 23px;
+
+    font-weight: bold;
+
+}
+
+nav {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 18px;
+
+}
+
+nav a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+}
+
+nav a:hover {
+
+    color: var(--azul);
+
+}
+
+.hero {
+
+    min-height: 520px;
+
+    background: linear-gradient(
+
+        135deg,
+
+        var(--verde),
+
+        var(--escuro)
+
+    );
+
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 70px 20px;
+
+}
+
+.hero h1 {
+
+    font-size: 43px;
+
+    margin-bottom: 15px;
+
+}
+
+.hero p {
+
+    font-size: 19px;
+
+    max-width: 650px;
+
+    margin-bottom: 25px;
+
+}
+
+.botao {
+
+    display: inline-block;
+
+    background: var(--azul);
+
+    color: var(--escuro);
+
+    padding: 13px 25px;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+    text-align: center;
+
+}
+
+.botao:hover {
+
+    background: white;
+
+    transform: translateY(-3px);
+
+}
+
+section {
+
+    padding: 65px 8%;
+
+    text-align: center;
+
+}
+
+section h2 {
+
+    color: var(--verde);
+
+    font-size: 30px;
+
+    margin-bottom: 20px;
+
+}
+
+section p {
+
+    max-width: 850px;
+
+    margin: 0 auto 15px;
+
+    font-size: 17px;
+
+}
+
+.historia {
+
+    background: var(--creme);
+
+}
+
+.frase {
+
+    background: var(--verde);
+
+    color: white;
+
+    padding: 55px 20px;
+
+    text-align: center;
+
+}
+
+.frase h2 {
+
+    color: white;
+
+    font-size: 27px;
+
+    max-width: 800px;
+
+    margin: auto;
+
+}
+
+.aulas {
+
+    background: white;
+
+}
+
+.instrumentos {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 25px;
+
+    max-width: 1000px;
+
+    margin: 35px auto 0;
+
+}
+
+.instrumento {
+
+    background: var(--creme);
+
+    padding: 30px 20px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+.instrumento h3 {
+
+    color: var(--verde);
+
+    font-size: 23px;
+
+    margin-bottom: 10px;
+
+}
+
+.instrumento p {
+
+    font-size: 15px;
+
+    margin-bottom: 20px;
+
+}
+
+.planos {
+
+    background: var(--azul);
+
+}
+
+.planos h2 {
+
+    color: var(--escuro);
+
+}
+
+.contato {
+
+    background: white;
+
+}
+
+.contato-info {
+
+    margin: 25px auto;
+
+    max-width: 650px;
+
+}
+
+.contato-info p {
+
+    margin-bottom: 12px;
+
+}
+
+.botoes-contato {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+}
+
+.botao-verde {
+
+    background: var(--verde);
+
+    color: white;
+
+}
+
+.botao-verde:hover {
+
+    background: var(--escuro);
+
+    color: white;
+
+}
+
+.localizacao {
+
+    background: var(--creme);
+
+}
+
+footer {
+
+    background: var(--escuro);
+
+    color: white;
+
+    text-align: center;
+
+    padding: 25px 15px;
+
+    font-size: 14px;
+
+}
+
+@media (max-width: 600px) {
+
+    header {
+
+        justify-content: center;
+
+        text-align: center;
+
+    }
+
+    nav {
+
+        justify-content: center;
+
+    }
+
+    .hero h1 {
+
+        font-size: 32px;
+
+    }
+
+    .hero p {
+
+        font-size: 16px;
+
+    }
+
+    section {
+
+        padding: 50px 6%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">Aulas Musicais Samuel Rosa</div>
+
+    <nav>
+
+        <a href="#inicio">Início</a>
+
+        <a href="#historia">Sobre</a>
+
+        <a href="#aulas">Aulas</a>
+
+        <a href="#planos">Planos</a>
+
+        <a href="#contato">Contato</a>
+
+    </nav>
+
+</header>
+
+<!-- INÍCIO -->
+
+<div class="hero" id="inicio">
+
+    <h1>Aulas Musicais Samuel Rosa</h1>
+
+    <p>
+
+        Descubra o prazer de aprender música!
+
+        Aulas presenciais de violão, guitarra e contrabaixo
+
+        para quem deseja começar ou evoluir musicalmente.
+
+    </p>
+
+    <a href="#aulas" class="botao">
+
+        Conheça nossas aulas
+
+    </a>
+
+</div>
+
+<!-- HISTÓRIA DA MÚSICA -->
+
+<section class="historia" id="historia">
+
+    <h2>A música transforma histórias</h2>
+
+    <p>
+
+        A música acompanha a humanidade há milhares de anos.
+
+        Ela é uma forma de expressão, comunicação e emoção,
+
+        capaz de aproximar pessoas e marcar momentos especiais.
+
+    </p>
+
+    <p>
+
+        Aprender a tocar um instrumento é descobrir uma nova
+
+        maneira de se expressar, desenvolver habilidades e
+
+        transformar paixão em conhecimento.
+
+    </p>
+
+</section>
+
+<!-- FRASE -->
+
+<div class="frase">
+
+    <h2>
+
+        Dê o primeiro acorde da sua história musical,
+
+        agende sua aula experimental!
+
+    </h2>
+
+</div>
+
+<!-- AULAS -->
+
+<section class="aulas" id="aulas">
+
+    <h2>Escolha seu instrumento</h2>
+
+    <p>
+
+        Aprenda no seu ritmo e desenvolva suas habilidades
+
+        com aulas presenciais.
+
+    </p>
+
+    <div class="instrumentos">
+
+        <div class="instrumento">
+
+            <h3>Violão</h3>
+
+            <p>
+
+                Aprenda acordes, ritmos, músicas e técnicas
+
+                para desenvolver sua musicalidade.
+
+            </p>
+
+            <a class="botao botao-verde"
+
+               href="https://wa.me/5544997019512?text=Ol%C3%A1!%20Tenho%20interesse%20em%20uma%20aula%20experimental%20de%20viol%C3%A3o."
+
+               target="_blank">
+
+                Aula experimental
+
+            </a>
+
+        </div>
+
+        <div class="instrumento">
+
+            <h3>Guitarra</h3>
+
+            <p>
+
+                Desenvolva técnicas, solos, riffs e aprenda
+
+                a explorar diferentes estilos musicais.
+
+            </p>
+
+            <a class="botao botao-verde"
+
+               href="https://wa.me/5544997019512?text=Ol%C3%A1!%20Tenho%20interesse%20em%20uma%20aula%20experimental%20de%20guitarra."
+
+               target="_blank">
+
+                Aula experimental
+
+            </a>
+
+        </div>
+
+        <div class="instrumento">
+
+            <h3>Contrabaixo</h3>
+
+            <p>
+
+                Aprenda linhas de baixo, ritmo, percepção
+
+                musical e a importância do instrumento
+
+                na música.
+
+            </p>
+
+            <a class="botao botao-verde"
+
+               href="https://wa.me/5544997019512?text=Ol%C3%A1!%20Tenho%20interesse%20em%20uma%20aula%20experimental%20de%20contrabaixo."
+
+               target="_blank">
+
+                Aula experimental
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PLANOS -->
+
+<section class="planos" id="planos">
+
+    <h2>Conheça nossos planos</h2>
+
+    <p>
+
+        Quer saber mais sobre valores, horários e opções
+
+        de aulas? Entre em contato e conheça nossos planos.
+
+    </p>
+
+    <a class="botao botao-verde"
+
+       href="https://wa.me/5544997019512?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20os%20planos%20das%20aulas%20musicais."
+
+       target="_blank">
+
+        Conheça nossos planos
+
+    </a>
+
+</section>
+
+<!-- CONTATO -->
+
+<section class="contato" id="contato">
+
+    <h2>Vamos começar sua jornada musical?</h2>
+
+    <p>
+
+        Entre em contato e dê o primeiro passo
+
+        para aprender seu instrumento favorito.
+
+    </p>
+
+    <div class="contato-info">
+
+        <p><strong>Professor:</strong> Samuel Rosa</p>
+
+        <p><strong>Telefone:</strong> (44) 99701-9512</p>
+
+        <p><strong>Modalidade:</strong> Aulas presenciais</p>
+
+    </div>
+
+    <div class="botoes-contato">
+
+        <a class="botao botao-verde"
+
+           href="https://wa.me/5544997019512"
+
+           target="_blank">
+
+            WhatsApp
+
+        </a>
+
+        <a class="botao botao-verde"
+
+           href="https://www.instagram.com/samuelrosa_044?xtok=Zzh2cmlpdzRrcWhn&utm_source=qr"
+
+           target="_blank">
+
+            Instagram
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- LOCALIZAÇÃO -->
+
+<section class="localizacao" id="localizacao">
+
+    <h2>Onde estamos</h2>
+
+    <p>
+
+        Rua Tietê, 3931 – Jardim América I
+
+        <br>
+
+        Umuarama – PR
+
+    </p>
+
+    <br>
+
+    <a class="botao botao-verde"
+
+       href="https://www.google.com/maps/search/?api=1&query=Rua+Tiet%C3%AA%2C+3931%2C+Jardim+Am%C3%A9rica+I%2C+Umuarama%2C+PR"
+
+       target="_blank">
+
+        Ver localização
+
+    </a>
+
+</section>
+
+<!-- RODAPÉ -->
+
+<footer>
+
+    <p>
+
+        © 2026 Aulas Musicais Samuel Rosa.
+
+        Todos os direitos reservados.
+
+    </p>
+
+    <p>
+
+        Música é expressão, aprendizado e paixão!
+
+    </p>
+
+</footer>
+
+</body>
+
+</html>
