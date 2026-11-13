@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 
 <html lang="pt-BR">
@@ -96,8 +98,6 @@ nav a {
 
     font-weight: bold;
 
-    transition: 0.3s;
-
 }
 
 nav a:hover {
@@ -106,19 +106,49 @@ nav a:hover {
 
 }
 
+/* BANNER COMEMORATIVO */
+
+#banner-comemorativo {
+
+    display: none;
+
+    padding: 14px;
+
+    text-align: center;
+
+    font-weight: bold;
+
+    background: var(--azul);
+
+    color: var(--escuro);
+
+    font-size: 16px;
+
+}
+
+#banner-comemorativo.ativo {
+
+    display: block;
+
+}
+
+#emoji-data {
+
+    display: block;
+
+    font-size: 27px;
+
+    margin-bottom: 4px;
+
+}
+
+/* DESTAQUE PRINCIPAL */
+
 .hero {
 
     min-height: 520px;
 
-    background: linear-gradient(
-
-        135deg,
-
-        var(--verde),
-
-        var(--escuro)
-
-    );
+    background: linear-gradient(135deg, var(--verde), var(--escuro));
 
     color: white;
 
@@ -133,6 +163,10 @@ nav a:hover {
     text-align: center;
 
     padding: 70px 20px;
+
+    position: relative;
+
+    overflow: hidden;
 
 }
 
@@ -153,6 +187,44 @@ nav a:hover {
     margin-bottom: 25px;
 
 }
+
+.decoracao {
+
+    position: absolute;
+
+    font-size: 35px;
+
+    opacity: 0.85;
+
+    pointer-events: none;
+
+}
+
+.decoracao.um {
+
+    top: 35px;
+
+    left: 8%;
+
+}
+
+.decoracao.dois {
+
+    top: 70px;
+
+    right: 9%;
+
+}
+
+.decoracao.tres {
+
+    bottom: 35px;
+
+    right: 15%;
+
+}
+
+/* BOTÕES */
 
 .botao {
 
@@ -183,6 +255,24 @@ nav a:hover {
     transform: translateY(-3px);
 
 }
+
+.botao-verde {
+
+    background: var(--verde);
+
+    color: white;
+
+}
+
+.botao-verde:hover {
+
+    background: var(--escuro);
+
+    color: white;
+
+}
+
+/* SEÇÕES */
 
 section {
 
@@ -338,22 +428,6 @@ section p {
 
 }
 
-.botao-verde {
-
-    background: var(--verde);
-
-    color: white;
-
-}
-
-.botao-verde:hover {
-
-    background: var(--escuro);
-
-    color: white;
-
-}
-
 .localizacao {
 
     background: var(--creme);
@@ -373,6 +447,8 @@ footer {
     font-size: 14px;
 
 }
+
+/* CELULAR */
 
 @media (max-width: 600px) {
 
@@ -408,6 +484,12 @@ footer {
 
     }
 
+    .decoracao {
+
+        font-size: 25px;
+
+    }
+
 }
 
 </style>
@@ -436,9 +518,25 @@ footer {
 
 </header>
 
+<!-- BANNER AUTOMÁTICO -->
+
+<div id="banner-comemorativo">
+
+    <span id="emoji-data"></span>
+
+    <div id="mensagem-data"></div>
+
+</div>
+
 <!-- INÍCIO -->
 
 <div class="hero" id="inicio">
+
+    <span class="decoracao um" id="decoracao-1"></span>
+
+    <span class="decoracao dois" id="decoracao-2"></span>
+
+    <span class="decoracao tres" id="decoracao-3"></span>
 
     <h1>Aulas Musicais Samuel Rosa</h1>
 
@@ -460,7 +558,7 @@ footer {
 
 </div>
 
-<!-- HISTÓRIA DA MÚSICA -->
+<!-- HISTÓRIA -->
 
 <section class="historia" id="historia">
 
@@ -536,7 +634,7 @@ footer {
 
                target="_blank">
 
-                Aula experimental
+                Aula experimental de violão
 
             </a>
 
@@ -560,7 +658,7 @@ footer {
 
                target="_blank">
 
-                Aula experimental
+                Aula experimental de guitarra
 
             </a>
 
@@ -586,7 +684,7 @@ footer {
 
                target="_blank">
 
-                Aula experimental
+                Aula experimental de contrabaixo
 
             </a>
 
@@ -702,8 +800,6 @@ footer {
 
 </section>
 
-<!-- RODAPÉ -->
-
 <footer>
 
     <p>
@@ -721,6 +817,464 @@ footer {
     </p>
 
 </footer>
+
+<script>
+
+/* =====================================
+
+   CALENDÁRIO COMEMORATIVO AUTOMÁTICO
+
+   Todas as datas começam 30 dias antes
+
+   e terminam no dia seguinte.
+
+===================================== */
+
+function criarData(ano, mes, dia) {
+
+    return new Date(ano, mes - 1, dia);
+
+}
+
+function adicionarDias(data, quantidade) {
+
+    const nova = new Date(data);
+
+    nova.setDate(nova.getDate() + quantidade);
+
+    return nova;
+
+}
+
+/* Calcula a Páscoa */
+
+function calcularPascoa(ano) {
+
+    const a = ano % 19;
+
+    const b = Math.floor(ano / 100);
+
+    const c = ano % 100;
+
+    const d = Math.floor(b / 4);
+
+    const e = b % 4;
+
+    const f = Math.floor((b + 8) / 25);
+
+    const g = Math.floor((b - f + 1) / 3);
+
+    const h = (19 * a + b - d - g + 15) % 30;
+
+    const i = Math.floor(c / 4);
+
+    const k = c % 4;
+
+    const l = (32 + 2 * e + 2 * i - h - k) % 7;
+
+    const m = Math.floor((a + 11 * h + 22 * l) / 451);
+
+    const mes = Math.floor((h + l - 7 * m + 114) / 31);
+
+    const dia = ((h + l - 7 * m + 114) % 31) + 1;
+
+    return criarData(ano, mes, dia);
+
+}
+
+/* Calcula o domingo de uma semana do mês */
+
+function domingoDoMes(ano, mes, numero) {
+
+    const primeiro = criarData(ano, mes, 1);
+
+    const primeiroDomingo =
+
+        1 + ((7 - primeiro.getDay()) % 7);
+
+    return criarData(
+
+        ano,
+
+        mes,
+
+        primeiroDomingo + (numero - 1) * 7
+
+    );
+
+}
+
+/* Cria uma comemoração com 30 dias de antecedência */
+
+function criarEvento(nome, data, emoji, mensagem, enfeites) {
+
+    return {
+
+        nome: nome,
+
+        inicio: adicionarDias(data, -30),
+
+        fim: adicionarDias(data, 1),
+
+        emoji: emoji,
+
+        mensagem: mensagem,
+
+        enfeites: enfeites
+
+    };
+
+}
+
+function verificarComemoracao() {
+
+    const hoje = new Date();
+
+    hoje.setHours(0, 0, 0, 0);
+
+    const ano = hoje.getFullYear();
+
+    const pascoa = calcularPascoa(ano);
+
+    const carnaval = adicionarDias(pascoa, -47);
+
+    const eventos = [
+
+        criarEvento(
+
+            "Carnaval",
+
+            carnaval,
+
+            "🎭🎉🎊",
+
+            "O ritmo está no ar! Vamos celebrar a música e a alegria. Feliz Carnaval!",
+
+            ["🎭", "🎉", "🎊"]
+
+        ),
+
+        criarEvento(
+
+            "Dia Internacional da Mulher",
+
+            criarData(ano, 3, 8),
+
+            "💜🌷✨",
+
+            "Nossa homenagem a todas as mulheres neste dia especial!",
+
+            ["💜", "🌷", "✨"]
+
+        ),
+
+        criarEvento(
+
+            "Páscoa",
+
+            pascoa,
+
+            "🐰🥚🌷",
+
+            "Que a Páscoa renove a esperança, a fé e a alegria!",
+
+            ["🐰", "🥚", "🌷"]
+
+        ),
+
+        criarEvento(
+
+            "Dia das Mães",
+
+            domingoDoMes(ano, 5, 2),
+
+            "💐❤️🎶",
+
+            "Feliz Dia das Mães! Uma homenagem a quem ensina com amor.",
+
+            ["💐", "❤️", "🌷"]
+
+        ),
+
+        criarEvento(
+
+            "Dia dos Namorados",
+
+            criarData(ano, 6, 12),
+
+            "❤️🎵🌹",
+
+            "O amor também tem sua própria melodia. Feliz Dia dos Namorados!",
+
+            ["❤️", "🎵", "🌹"]
+
+        ),
+
+        criarEvento(
+
+            "Festa Junina",
+
+            criarData(ano, 6, 24),
+
+            "🎉🌽🎶",
+
+            "É tempo de Festa Junina! Vamos celebrar com muita música!",
+
+            ["🎉", "🌽", "🎶"]
+
+        ),
+
+        criarEvento(
+
+            "Dia dos Pais",
+
+            domingoDoMes(ano, 8, 2),
+
+            "👨🎸❤️",
+
+            "Feliz Dia dos Pais! Uma homenagem especial a todos os pais!",
+
+            ["👨", "🎸", "❤️"]
+
+        ),
+
+        criarEvento(
+
+            "Dia da Independência",
+
+            criarData(ano, 9, 7),
+
+            "🇧🇷💚💛",
+
+            "7 de setembro: celebrando a Independência do Brasil!",
+
+            ["🇧🇷", "💚", "💛"]
+
+        ),
+
+        criarEvento(
+
+            "Dia das Crianças",
+
+            criarData(ano, 10, 12),
+
+            "🎈🎁🎨",
+
+            "Feliz Dia das Crianças! Que nunca faltem sonhos e música!",
+
+            ["🎈", "🎁", "🎨"]
+
+        ),
+
+        criarEvento(
+
+            "Dia dos Professores",
+
+            criarData(ano, 10, 15),
+
+            "📚🎼❤️",
+
+            "Feliz Dia dos Professores! Ensinar também é transformar vidas.",
+
+            ["📚", "🎼", "❤️"]
+
+        ),
+
+        criarEvento(
+
+            "Halloween",
+
+            criarData(ano, 10, 31),
+
+            "🎃🦇✨",
+
+            "Uma temporada de diversão e música chegou!",
+
+            ["🎃", "🦇", "✨"]
+
+        ),
+
+        criarEvento(
+
+            "Consciência Negra",
+
+            criarData(ano, 11, 20),
+
+            "✊🏿🎶🖤",
+
+            "Celebramos a história, a cultura e a contribuição negra para a música e a sociedade.",
+
+            ["✊🏿", "🎶", "🖤"]
+
+        ),
+
+        criarEvento(
+
+            "Dia do Músico",
+
+            criarData(ano, 11, 22),
+
+            "🎸🎹🎤",
+
+            "Feliz Dia do Músico! A música transforma sentimentos em melodias.",
+
+            ["🎸", "🎹", "🎤"]
+
+        )
+
+    ];
+
+    let eventoAtual = null;
+
+    /* Identifica eventos que estão no período */
+
+    for (const evento of eventos) {
+
+        if (
+
+            hoje >= evento.inicio &&
+
+            hoje <= evento.fim
+
+        ) {
+
+            if (!eventoAtual ||
+
+                evento.inicio > eventoAtual.inicio) {
+
+                eventoAtual = evento;
+
+            }
+
+        }
+
+    }
+
+    /* NATAL E ANO NOVO:
+
+       período fixo de 25/11 a 02/01 */
+
+    const natalInicio = criarData(ano, 11, 25);
+
+    const natalFim = criarData(ano + 1, 1, 2);
+
+    const anoNovoInicio = criarData(ano - 1, 11, 25);
+
+    const anoNovoFim = criarData(ano, 1, 2);
+
+    const periodoNatalAtual =
+
+        hoje >= natalInicio && hoje <= natalFim;
+
+    const periodoNatalAnterior =
+
+        hoje >= anoNovoInicio && hoje <= anoNovoFim;
+
+    const periodoFimDeAno =
+
+        periodoNatalAtual || periodoNatalAnterior;
+
+    const natalOuAnoNovo = periodoFimDeAno
+
+        ? {
+
+            emoji: hoje.getMonth() === 11 ||
+
+                   hoje.getDate() >= 25 && hoje.getMonth() === 10
+
+                   ? "🎄⭐🎁"
+
+                   : "🎆✨🥂",
+
+            mensagem: hoje.getMonth() === 11 ||
+
+                      hoje.getDate() >= 25 && hoje.getMonth() === 10
+
+                ? "O espírito natalino chegou! Que seu Natal seja repleto de paz, alegria e música!"
+
+                : "Feliz Ano Novo! Que o novo ano seja repleto de música, sonhos e conquistas!",
+
+            enfeites: hoje.getMonth() === 11 ||
+
+                      hoje.getDate() >= 25 && hoje.getMonth() === 10
+
+                ? ["🎄", "⭐", "🎁"]
+
+                : ["🎆", "✨", "🥂"]
+
+        }
+
+        : null;
+
+    if (periodoFimDeAno) {
+
+        eventoAtual = natalOuAnoNovo;
+
+    }
+
+    /* Exibe a decoração */
+
+    const banner =
+
+        document.getElementById("banner-comemorativo");
+
+    const emoji =
+
+        document.getElementById("emoji-data");
+
+    const mensagem =
+
+        document.getElementById("mensagem-data");
+
+    const decoracao1 =
+
+        document.getElementById("decoracao-1");
+
+    const decoracao2 =
+
+        document.getElementById("decoracao-2");
+
+    const decoracao3 =
+
+        document.getElementById("decoracao-3");
+
+    if (eventoAtual) {
+
+        banner.classList.add("ativo");
+
+        emoji.textContent = eventoAtual.emoji;
+
+        mensagem.textContent = eventoAtual.mensagem;
+
+        decoracao1.textContent = eventoAtual.enfeites[0];
+
+        decoracao2.textContent = eventoAtual.enfeites[1];
+
+        decoracao3.textContent = eventoAtual.enfeites[2];
+
+    } else {
+
+        banner.classList.remove("ativo");
+
+        emoji.textContent = "";
+
+        mensagem.textContent = "";
+
+        decoracao1.textContent = "";
+
+        decoracao2.textContent = "";
+
+        decoracao3.textContent = "";
+
+    }
+
+}
+
+/* Executa ao abrir o site */
+
+verificarComemoracao();
+
+</script>
 
 </body>
 
